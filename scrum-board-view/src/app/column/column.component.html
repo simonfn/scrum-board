@@ -1,25 +1,15 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">
-                <span>
-                    {{state}}
-                </span>
-                <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskFormModal" (click)="addTask()">
-                    +
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </th>    
-        </tr>
-    </thead>
-    <tbody>
+<div class="example-container">
+    <h2>{{state}}</h2> 
+    <div
+        cdkDropList
+        [cdkDropListData]="tasks"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
         @for(task of tasks; track task.id){
-        <tr class="">
-            <td>
+            <div class="example-box" cdkDrag>
                 <h3>{{task.title}}</h3>
                 <p>{{task.description}}</p>
-            </td>
-        </tr>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
