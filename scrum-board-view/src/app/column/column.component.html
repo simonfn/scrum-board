@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                <span>
+                    {{state}}
+                </span>
+                <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskFormModal" (click)="addTask()">
+                    +
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </th>    
+        </tr>
+    </thead>
+    <tbody>
+        @for(task of tasks; track task.id){
+        <tr class="">
+            <td>
+                <h3>{{task.title}}</h3>
+                <p>{{task.description}}</p>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

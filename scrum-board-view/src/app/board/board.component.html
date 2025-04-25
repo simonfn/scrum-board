@@ -1,0 +1,11 @@
+<div class=".container m-4 d-flex flex-sm-row flex-column">
+    @for (_state of states; track _state) {
+        <app-column [state]="_state"
+                    [tasks]="getTasksByState(_state)"
+                    (showFormEvent)="showForm($event)"
+                    class="col border"></app-column>
+    }
+</div>
+<app-task-form #taskFormApp
+                [states]="states"
+                (submitEvent)="submitTask($event)"></app-task-form>
