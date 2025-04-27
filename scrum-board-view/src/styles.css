@@ -1,9 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+}
+
+/* Global styles */
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fafbfe !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* Green Theme Overrides */
+
+/* Background colors */
+.bg-primary-subtle {
+    background-color: #e8f5e9 !important; /* Subtle green */
+}
+
+.bg-primary-emphasis {
+    background-color: #2e7d32 !important; /* Emphasis green */
+}
+
+.bg-secondary-subtle {
+    background-color: #f1f8e9 !important; /* Subtle secondary green */
+}
+
+.bg-secondary-emphasis {
+    background-color: #558b2f !important; /* Emphasis secondary green */
+}
+
+.bg-dark {
+    background-color: #1b5e20 !important; /* Dark green */
+}
+
+.bg-light {
+    background-color: #a5d6a7 !important; /* Light green */
+}
+
+/* Text colors */
+.text-primary-subtle {
+    color: #e8f5e9 !important; /* Subtle green for text */
+}
+
+.text-primary-emphasis {
+    color: #2e7d32 !important; /* Emphasis green for text */
+}
+
+.text-secondary-subtle {
+    color: #f1f8e9 !important; /* Subtle secondary green for text */
+}
+
+.text-secondary-emphasis {
+    color: #558b2f !important; /* Emphasis secondary green for text */
+}
+
+.text-light {
+    color: #ffffff !important; /* White text for dark green backgrounds */
+}
+
+.text-dark {
+    color: #1b5e20 !important; /* Dark green text for light backgrounds */
+}
+
+/* Button colors */
+.btn-primary {
+    background-color: #2e7d32 !important; /* Emphasis green */
+    border-color: #1b5e20 !important; /* Dark green border */
+}
+
+.btn-primary:hover {
+    background-color: #1b5e20 !important; /* Dark green on hover */
+    border-color: #145a1f !important; /* Slightly darker green border */
+}
+
+.btn-secondary {
+    background-color: #558b2f !important; /* Emphasis secondary green */
+    border-color: #33691e !important; /* Darker secondary green border */
+}
+
+.btn-secondary:hover {
+    background-color: #33691e !important; /* Darker secondary green on hover */
+    border-color: #1b5e20 !important; /* Dark green border */
+}
+
+/* Border colors */
+.border-primary {
+    border-color: #2e7d32 !important; /* Emphasis green border */
+}
+
+.border-secondary {
+    border-color: #558b2f !important; /* Emphasis secondary green border */
+}
+
+.border-subtle {
+    border-color: #a5d6a7 !important; /* Light green border */
+}

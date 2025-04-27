@@ -1,12 +1,16 @@
 <div cdkDropListGroup
-     class=".container m-4 d-flex flex-sm-row flex-column">
-    @for (_state of states; track _state) {
-        <app-column [state]="_state"
-                    [tasks]="getTasksByState(_state)"
-                    (showFormEvent)="showForm($event)"
-                    (updateTaskStateOnMoveEvent)="updateTaskStateOnMove($event)"
-                    (updateTaskOrderEvent)="updateTaskOrder($event)"></app-column>
-    }
+     class="container-sm my-3">
+    <div class="row">
+        @for (_state of states; track _state) {
+            <div class="col-12 col-sm-6 col-lg-4 mb-3">
+                <app-column [state]="_state"
+                            [tasks]="getTasksByState(_state)"
+                            (showFormEvent)="showForm($event)"
+                            (updateTaskStateOnMoveEvent)="updateTaskStateOnMove($event)"
+                            (updateTaskOrderEvent)="updateTaskOrder($event)"></app-column>
+            </div>
+        }
+    </div>
 </div>
 <app-task-form #taskFormApp
                 [states]="states"
