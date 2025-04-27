@@ -13,7 +13,8 @@ import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 })
 export class BoardComponent {
     private tasksService = inject(TasksService);
-    states: string[] = ['To Do', 'In Progress', 'Done'];
+    states = this.tasksService.getStates();
+    
     @ViewChild('taskFormApp') taskForm!: TaskFormComponent;
 
     getTasksByState(state: string): Task[] {
@@ -28,7 +29,14 @@ export class BoardComponent {
         this.tasksService.addTask(task);
     }
 
-    updateTaskState({id, state}: {id: number, state: string}) {
-        this.tasksService.updateTaskState(id, state);
+    updateTask({id, task}: {id: number, task: Partial<Task>}) {
+        this.tasksService.updateTaskInfo(id, task);
+    }
+
+    updateTaskOrder({id, state, currIndex, newIndex}: {id: number, state: string, currIndex:number, newIndex: number}): void {
+        this.tasksService.updateTaskOrder(id, state, currIndex, newIndex);
+    }
+    updateTaskStateOnMove({id, currIndex, currState, newIndex, newState}: {id: number, currIndex: number, currState: string, newIndex: number, newState: string}): void {
+        this.tasksService.updateTaskStateInArray(id, currIndex, currState, newIndex, newState);
     }
 }

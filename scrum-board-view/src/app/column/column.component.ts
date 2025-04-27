@@ -18,7 +18,8 @@ export class ColumnComponent {
   @Input() state: string = '';
   @Input() tasks: Task[] = [];
   @Output() showFormEvent: EventEmitter<string> = new EventEmitter<string>();
-  @Output() updateTaskStateEvent = new EventEmitter<{id: number, state: string}>();
+  @Output() updateTaskOrderEvent = new EventEmitter<{id: number, state: string, currIndex:number, newIndex: number}>();
+  @Output() updateTaskStateOnMoveEvent = new EventEmitter<{id: number, currIndex: number, currState: string, newIndex: number, newState: string}>();
 
   addTask() {
     this.showFormEvent.emit(this.state);
@@ -27,18 +28,27 @@ export class ColumnComponent {
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+      this.updateTaskOrderEvent.emit({
+        id: event.container.data[event.currentIndex].id,
+        state: this.state,
+        currIndex: event.previousIndex,
+        newIndex: event.currentIndex
+      });
       return;
     }
-
+    const prevState = event.previousContainer.data[event.previousIndex].state;
     transferArrayItem(
       event.previousContainer.data,
       event.container.data,
       event.previousIndex,
       event.currentIndex
     );
-    this.updateTaskStateEvent.emit({
+    this.updateTaskStateOnMoveEvent.emit({
       id: event.container.data[event.currentIndex].id,
-      state: this.state,
+      currIndex: event.previousIndex,
+      currState: prevState,
+      newIndex: event.currentIndex,
+      newState: this.state
     });
   }
 }

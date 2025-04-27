@@ -1,5 +1,11 @@
-<div class="example-container">
-    <h2>{{state}}</h2> 
+<div class="example-container border">
+    <div class="example-header d-flex justify-content-between">
+        <h2>{{state}}</h2>
+        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#taskFormModal" (click)="addTask()">
+            +
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </div>
     <div
         cdkDropList
         [cdkDropListData]="tasks"
