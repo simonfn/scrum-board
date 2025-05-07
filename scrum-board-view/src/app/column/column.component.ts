@@ -15,14 +15,14 @@ import {
   styleUrl: './column.component.css'
 })
 export class ColumnComponent {
-  @Input() state: string = '';
+  @Input() state: {id: string, name: string} = {id: '', name: ''};
   @Input() tasks: Task[] = [];
   @Output() showFormEvent: EventEmitter<string> = new EventEmitter<string>();
   @Output() updateTaskOrderEvent = new EventEmitter<{id: number, state: string, currIndex:number, newIndex: number}>();
   @Output() updateTaskStateOnMoveEvent = new EventEmitter<{id: number, currIndex: number, currState: string, newIndex: number, newState: string}>();
 
   addTask() {
-    this.showFormEvent.emit(this.state);
+    this.showFormEvent.emit(this.state.id);
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -30,7 +30,7 @@ export class ColumnComponent {
       moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
       this.updateTaskOrderEvent.emit({
         id: event.container.data[event.currentIndex].id,
-        state: this.state,
+        state: this.state.id,
         currIndex: event.previousIndex,
         newIndex: event.currentIndex
       });
@@ -48,7 +48,7 @@ export class ColumnComponent {
       currIndex: event.previousIndex,
       currState: prevState,
       newIndex: event.currentIndex,
-      newState: this.state
+      newState: this.state.id
     });
   }
 }

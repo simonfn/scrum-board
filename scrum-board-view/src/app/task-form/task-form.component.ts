@@ -11,7 +11,7 @@ import { Task } from '../task';
 export class TaskFormComponent {
   @ViewChild('modalForm') modalForm: any;
   @ViewChild('selectState') selectState!: any;
-  @Input() states: string[] = [];
+  @Input() states: {id: string, name: string}[] = [];
   @Output() submitEvent: EventEmitter<Task> = new EventEmitter<Task>();
 
   taskForm: FormGroup = new FormGroup({

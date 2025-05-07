@@ -5,25 +5,29 @@ import { Task } from './task';
   providedIn: 'root'
 })
 export class TasksService {
-  private states: string[] = ['To Do', 'In Progress', 'Done'];
+  private states: {id: string, name: string}[] = [
+    { id: 'todo', name: 'To Do' },
+    { id: 'in-progress', name: 'In Progress' },
+    { id: 'done', name: 'Done' },
+  ];
   private mockTasks: Task[] = [
-    { id: 1, title: 'Task 1', description: 'Description 1', state: 'To Do'},
-    { id: 2, title: 'Task 2', description: 'Description 2', state: 'In Progress'},
-    { id: 3, title: 'Task 3', description: 'Description 3', state: 'Done'},
-    { id: 4, title: 'Task 4', description: 'Description 4', state: 'To Do'},
-    { id: 5, title: 'Task 5', description: 'Description 5', state: 'In Progress'},
-    { id: 6, title: 'Task 6', description: 'Description 6', state: 'Done'}
+    { id: 1, title: 'Task 1', description: 'Description 1', state: 'todo'},
+    { id: 2, title: 'Task 2', description: 'Description 2', state: 'in-progress'},
+    { id: 3, title: 'Task 3', description: 'Description 3', state: 'done'},
+    { id: 4, title: 'Task 4', description: 'Description 4', state: 'todo'},
+    { id: 5, title: 'Task 5', description: 'Description 5', state: 'in-progress'},
+    { id: 6, title: 'Task 6', description: 'Description 6', state: 'done'}
   ];
   private tasksByState: Map<string, Task[]>;
 
   constructor() {
     this.tasksByState = this.states.reduce((acc, state) => {
-      acc.set(state, this.mockTasks.filter(task => task.state === state));
+      acc.set(state.id, this.mockTasks.filter(task => task.state === state.id));
       return acc;
     }, new Map<string, Task[]>());  
    }
 
-  getStates(): string[] {
+  getStates(): {id: string, name: string}[] {
     return this.states;
   }
 
