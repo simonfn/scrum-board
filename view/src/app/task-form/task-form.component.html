@@ -1,0 +1,31 @@
+<div class="modal fade" id="taskFormModal" tabindex="-1" aria-labelledby="taskFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-secondary-subtle">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary-emphasis">Add a task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label text-secondary-emphasis">Title</label>
+                        <input type="text" id="title" formControlName="title" class="form-control text-dark" [class]="{'is-invalid': taskForm.get('title')?.invalid && taskForm.get('title')?.touched}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label text-secondary-emphasis">Description</label>
+                        <textarea id="description" formControlName="description" class="form-control text-dark" [class]="{'is-invalid': taskForm.get('description')?.invalid && taskForm.get('description')?.touched}"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label text-secondary-emphasis">State</label>
+                        <select #selectState id="selectState" formControlName="state" class="form-select text-dark">
+                            @for(_state of states; track _state) {
+                                <option [value]="_state.id">{{ _state.name }}</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end" data-bs-dismiss="modal" [disabled]="taskForm.invalid">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>

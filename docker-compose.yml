@@ -2,25 +2,22 @@ services:
   scrumboard:
     image: scrumboard-frontend
     build:
-      context: scrum-board-view
+      context: view
       dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
     ports:
       - 4200:4200
 
-  # backend:
-  #   image: scrumboard-backend
-  #   build:
-  #     context: scrum-board-api
-  #     dockerfile: ./Dockerfile
-  #   environment:
-  #     NODE_ENV: production
-  #     MONGO_URI: mongodb://database:27017/scrumboard
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - database
+  backend:
+    image: scrumboard-backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    environment:
+      MONGO_URI: mongodb://database:27017/scrumboard
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
   
   database:
     image: scrumboard-db

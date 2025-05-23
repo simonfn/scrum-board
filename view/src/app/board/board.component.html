@@ -1,0 +1,20 @@
+<div cdkDropListGroup
+     class="container-sm mt-3">
+    <div class="row">
+        @for (_state of states(); track _state.id) {
+            <div class="col-12 col-sm-6 col-lg-4 mb-3" [attr.state]="_state.id">
+                @if (!tasksResource.isLoading()) {
+                    <app-column [state]="_state"
+                                [tasks]="getTasksByState(_state.id)"
+                                (showFormEvent)="showForm($event)"
+                                (updateTaskStateOnMoveEvent)="updateTaskStateOnMove($event)"
+                                (updateTaskOrderEvent)="updateTaskOrder($event)">
+                    </app-column>
+                }
+            </div>
+        }
+    </div>
+</div>
+<app-task-form #taskFormApp
+                [states]="statesResource.value()"
+                (submitEvent)="submitTask($event)"></app-task-form>
